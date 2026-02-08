@@ -24,10 +24,12 @@ button{
     cursor:pointer;
 }
 
-#angry{
-    font-size:50px;
+#angryImg{
     display:none;
-    margin-top:10px;
+    width:72px;
+    height:100px;
+    position:absolute;
+    transition: left 0.2s ease, top 0.2s ease; /* smooth movement */
 }
 </style>
 </head>
@@ -36,31 +38,44 @@ button{
 
 <h1>Can you be my Valentine? ❤️</h1>
 
-<button onclick="yes()">Yes</button>
+<button onclick="yes()" id="yesBtn">Yes</button>
 <button id="noBtn" onmouseover="moveNo()">No</button>
 
-<div id="angry">😡</div>
+<!-- Angry image that follows the NO button -->
+<img id="angryImg" src="https://uploads.onecompiler.io/44d2f7swm/44d2ajayr/angry.jpg" alt="Angry Emoji">
 
 <script>
+let yesSize = 16;
+
 function yes(){
     alert("Yaaay ❤️ I love you!");
 }
 
 function moveNo(){
     let btn = document.getElementById("noBtn");
-    let angry = document.getElementById("angry");
+    let angry = document.getElementById("angryImg");
+    let yesBtn = document.getElementById("yesBtn");
 
-    angry.style.display = "block"; // show angry emoji
-
-    let maxX = window.innerWidth - btn.offsetWidth;
-    let maxY = window.innerHeight - btn.offsetHeight;
+    let padding = 10; // keep button/image inside window
+    let maxX = window.innerWidth - btn.offsetWidth - padding;
+    let maxY = window.innerHeight - btn.offsetHeight - padding;
 
     let x = Math.random() * maxX;
     let y = Math.random() * maxY;
 
+    // Move NO button
     btn.style.position = "absolute";
     btn.style.left = x + "px";
     btn.style.top = y + "px";
+
+    // Show and move angry image next to NO button
+    angry.style.display = "block";
+    angry.style.left = (x + btn.offsetWidth + 5) + "px";
+    angry.style.top = y + "px";
+
+    // YES button grows
+    yesSize += 5;
+    yesBtn.style.fontSize = yesSize + "px";
 }
 </script>
 
