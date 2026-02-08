@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine</title>
+
+<style>
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    flex-direction:column;
+    text-align:center;
+    font-family: Arial;
+    background:#ffe6f0;
+    overflow:hidden;
+}
+
+button{
+    padding:12px 25px;
+    font-size:16px;
+    margin:15px;
+    cursor:pointer;
+}
+
+#angry{
+    font-size:50px;
+    display:none;
+    margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Can you be my Valentine? ❤️</h1>
+
+<button onclick="yes()">Yes</button>
+<button id="noBtn" onmouseover="moveNo()">No</button>
+
+<div id="angry">😡</div>
+
+<script>
+function yes(){
+    alert("Yaaay ❤️ I love you!");
+}
+
+function moveNo(){
+    let btn = document.getElementById("noBtn");
+    let angry = document.getElementById("angry");
+
+    angry.style.display = "block"; // show angry emoji
+
+    let maxX = window.innerWidth - btn.offsetWidth;
+    let maxY = window.innerHeight - btn.offsetHeight;
+
+    let x = Math.random() * maxX;
+    let y = Math.random() * maxY;
+
+    btn.style.position = "absolute";
+    btn.style.left = x + "px";
+    btn.style.top = y + "px";
+}
+</script>
+
+</body>
+</html>
